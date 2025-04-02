@@ -100,13 +100,27 @@ const getInstallmentSummarized = () => {
 };
 
 const showTable = () => {
+  const animateUntil = 24;
+  const delayTime = 50; // in milliseconds
+
   hasilBarisRefs.value.forEach((el, index) => {
-    setTimeout(() => {
-      el.classList.remove("opacity-0");
-      el.classList.remove("leading-0");
-      el.classList.remove("border-0");
-      el.classList.add("not-last:border-b");
-    }, index * 50);
+    if (index <= animateUntil) {
+      setTimeout(() => {
+        el.classList.remove("opacity-0", "leading-0", "border-0");
+        el.classList.add("not-last:border-b");
+      }, index * delayTime);
+    } else if (index === animateUntil + 1) {
+      setTimeout(() => {
+        for (let i = index; i < hasilBarisRefs.value.length; i++) {
+          hasilBarisRefs.value[i].classList.remove(
+            "opacity-0",
+            "leading-0",
+            "border-0"
+          );
+          hasilBarisRefs.value[i].classList.add("not-last:border-b");
+        }
+      }, (animateUntil + 1) * delayTime);
+    }
   });
 };
 </script>
