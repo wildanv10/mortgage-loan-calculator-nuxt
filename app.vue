@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import { formatCurrency, parseNumber } from "./utils";
 
 const isCalculating = ref(false);
 const inputs = ref({
@@ -13,15 +14,6 @@ const inputs = ref({
 });
 const hasil = ref([]);
 const hasilBarisRefs = ref([]);
-
-const formatCurrency = (value) => {
-  return new Intl.NumberFormat("id-ID", {
-    style: "decimal",
-    currency: "IDR",
-  }).format(value);
-};
-
-const parseNumber = (value) => parseInt(value.replace(/\./g, "")) || 0;
 
 const formattedValue = (field) =>
   computed({
