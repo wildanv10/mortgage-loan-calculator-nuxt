@@ -101,20 +101,12 @@ const getInstallmentSummarized = () => {
 
 const showTable = () => {
   hasilBarisRefs.value.forEach((el, index) => {
-    let interval = 50;
-
-    if (index <= 24) {
-      interval = index * 50;
-    } else if (index > 24) {
-      interval = 0;
-    }
-
     setTimeout(() => {
       el.classList.remove("opacity-0");
       el.classList.remove("leading-0");
       el.classList.remove("border-0");
       el.classList.add("not-last:border-b");
-    }, interval);
+    }, index * 50);
   });
 };
 </script>
