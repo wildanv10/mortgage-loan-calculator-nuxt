@@ -127,11 +127,11 @@ const showTable = () => {
 
 <template>
   <div class="container mx-auto">
-    <section class="flex flex-col lg:flex-row gap-4">
+    <section class="flex flex-col justify-around lg:flex-row gap-4">
       <!-- Input Form -->
       <div>
         <div
-          class="sticky top-6 lg:top-10 shadow-lg outline outline-black/5 bg-white rounded-2xl p-4"
+          class="sticky top-6 lg:top-10 mt-6 lg:mt-10 shadow-lg outline outline-black/5 bg-white rounded-2xl p-4"
         >
           <h2 class="text-2xl font-bold mb-10">Simulasi KPR</h2>
           <form class="flex flex-col gap-6" @submit.prevent="hitungKPR">
@@ -305,17 +305,18 @@ const showTable = () => {
       </div>
 
       <!-- Right Section -->
-      <section class="h-dvh">
+      <section :class="{ 'h-auto lg:h-dvh': hasil.length }">
         <!-- Results Table -->
         <section
-          class="lg:h-1/2 rounded-lg overflow-auto mt-6 lg:mt-10 mb-6 lg:mb-10"
+          :class="{ 'h-[400px] lg:h-1/2': hasil.length }"
+          class="rounded-lg overflow-auto mt-6 lg:mt-10 mb-6 lg:mb-10"
         >
           <table
             v-if="hasil.length"
             class="relative border border-gray-100 table-auto w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400"
           >
             <thead
-              class="sticky top-0 text-gray-700 uppercase dark:text-gray-400 border-y border-gray-300 bg-gray-200"
+              class="sticky -top-0.5 text-gray-700 uppercase dark:text-gray-400 border-y border-gray-300 bg-gray-200"
             >
               <tr>
                 <th class="px-6 py-3 text-center">Tahun</th>
@@ -384,7 +385,7 @@ const showTable = () => {
         </section>
 
         <!-- Chart -->
-        <section>
+        <section class="flex justify-center items-center mt-12 lg:mt-24 mb-10">
           <ChartRateDifference v-if="hasil.length" :hasil-angsuran="hasil" />
         </section>
       </section>
