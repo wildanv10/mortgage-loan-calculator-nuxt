@@ -109,9 +109,7 @@ const showTable = () => {
 
 <template>
   <div class="container mx-auto">
-    <section
-      class="flex flex-col lg:flex-row gap-4 mt-6 lg:mt-10 mb-12 lg:mb-24"
-    >
+    <section class="flex flex-col lg:flex-row gap-4">
       <!-- Input Form -->
       <div>
         <div
@@ -288,61 +286,71 @@ const showTable = () => {
         </div>
       </div>
 
-      <!-- Results Table -->
-      <section class="rounded-lg overflow-y-hidden">
-        <table
-          v-if="hasil.length"
-          class="border border-gray-100 table-auto w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      <!-- Right Section -->
+      <section class="h-dvh">
+        <!-- Results Table -->
+        <section
+          class="lg:h-1/2 rounded-lg overflow-auto mt-6 lg:mt-10 mb-6 lg:mb-10"
         >
-          <thead
-            class="text-gray-700 uppercase dark:text-gray-400 border-y border-gray-300 bg-gray-200"
+          <table
+            v-if="hasil.length"
+            class="relative border border-gray-100 table-auto w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400"
           >
-            <tr>
-              <th class="px-6 py-3 text-center">Tahun</th>
-              <th class="px-6 py-3 text-center">Bulan</th>
-              <th class="px-6 py-3 text-center">Angsuran Bulanan</th>
-              <th class="px-6 py-3 text-center">Angsuran Bunga</th>
-              <th class="px-6 py-3 text-center">Angsuran Pokok</th>
-              <th class="px-6 py-3 text-center">Sisa Pokok</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 bg-gray-100 *:px-6 *:py-2"
+            <thead
+              class="sticky top-0 text-gray-700 uppercase dark:text-gray-400 border-y border-gray-300 bg-gray-200"
             >
-              <td colspan="5">Pinjaman</td>
-              <td class="text-right">
-                {{ formatCurrency(inputs.hargaProperty - inputs.dp) }}
-              </td>
-            </tr>
-            <tr
-              v-for="(item, index) in hasil"
-              :ref="(el) => (hasilBarisRefs[index] = el)"
-              :key="index"
-              class="border-gray-200 dark:border-gray-700 hover:bg-gray-50 *:px-6 *:py-2"
-              :class="{
-                'bg-gray-100': item.Tahun % 2 === 0,
-                'transition-[opacity] duration-200 ease-in-out': true,
-                'opacity-0 leading-0 border-0 p-0': true,
-              }"
-            >
-              <td class="text-center">{{ item.Tahun }}</td>
-              <td class="text-center">{{ item.Bulan }}</td>
-              <td class="text-right">
-                {{ formatCurrency(item.AngsuranBulanan) }}
-              </td>
-              <td class="text-right">
-                {{ formatCurrency(item.AngsuranBunga) }}
-              </td>
-              <td class="text-right">
-                {{ formatCurrency(item.AngsuranPokok) }}
-              </td>
-              <td class="text-right">
-                {{ formatCurrency(item.SisaPokok) }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <tr>
+                <th class="px-6 py-3 text-center">Tahun</th>
+                <th class="px-6 py-3 text-center">Bulan</th>
+                <th class="px-6 py-3 text-center">Angsuran Bulanan</th>
+                <th class="px-6 py-3 text-center">Angsuran Bunga</th>
+                <th class="px-6 py-3 text-center">Angsuran Pokok</th>
+                <th class="px-6 py-3 text-center">Sisa Pokok</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 bg-gray-100 *:px-6 *:py-2"
+              >
+                <td colspan="5">Pinjaman</td>
+                <td class="text-right">
+                  {{ formatCurrency(inputs.hargaProperty - inputs.dp) }}
+                </td>
+              </tr>
+              <tr
+                v-for="(item, index) in hasil"
+                :ref="(el) => (hasilBarisRefs[index] = el)"
+                :key="index"
+                class="border-gray-200 dark:border-gray-700 hover:bg-gray-50 *:px-6 *:py-2"
+                :class="{
+                  'bg-gray-100': item.Tahun % 2 === 0,
+                  'transition-[opacity] duration-200 ease-in-out': true,
+                  'opacity-0 leading-0 border-0 p-0': true,
+                }"
+              >
+                <td class="text-center">{{ item.Tahun }}</td>
+                <td class="text-center">{{ item.Bulan }}</td>
+                <td class="text-right">
+                  {{ formatCurrency(item.AngsuranBulanan) }}
+                </td>
+                <td class="text-right">
+                  {{ formatCurrency(item.AngsuranBunga) }}
+                </td>
+                <td class="text-right">
+                  {{ formatCurrency(item.AngsuranPokok) }}
+                </td>
+                <td class="text-right">
+                  {{ formatCurrency(item.SisaPokok) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Chart -->
+        <section>
+          <ChartRateDifference v-if="hasil.length" :hasil-angsuran="hasil" />
+        </section>
       </section>
     </section>
   </div>
