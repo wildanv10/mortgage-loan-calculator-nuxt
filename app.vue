@@ -301,6 +301,13 @@ const showTable = () => {
               Hitung
             </button>
           </form>
+
+          <p class="text-xs text-wrap text-gray-400 mt-4">
+            <span class="font-bold">Disclaimer:</span> Perhitungan ini hanya
+            simulasi dan tidak mengikat. Keputusan sepenuhnya menjadi tanggung
+            jawab pengguna. Disarankan berkonsultasi dengan pihak terkait
+            sebelum mengambil keputusan finansial.
+          </p>
         </div>
       </div>
 
