@@ -14,6 +14,9 @@ const inputs = ref({
 });
 const hasil = ref([]);
 const hasilBarisRefs = ref([]);
+const totalAngsuran = ref(0);
+const totalBunga = ref(0);
+const totalPokok = ref(0);
 
 const formattedValue = (field) =>
   computed({
@@ -84,7 +87,16 @@ const hitungKPR = async () => {
   isCalculating.value = false;
 
   await nextTick();
+  getInstallmentSummarized();
   showTable();
+};
+
+const getInstallmentSummarized = () => {
+  hasil.value.forEach((angsuran) => {
+    totalAngsuran.value += Number(angsuran.AngsuranBulanan);
+    totalBunga.value += Number(angsuran.AngsuranBunga);
+    totalPokok.value += Number(angsuran.AngsuranPokok);
+  });
 };
 
 const showTable = () => {
@@ -336,6 +348,24 @@ const showTable = () => {
                 </td>
               </tr>
             </tbody>
+            <tfoot
+              class="text-gray-700 uppercase dark:text-gray-400 border-y border-gray-300 bg-gray-200"
+            >
+              <tr>
+                <td class="px-6 py-3 text-center"></td>
+                <td class="px-6 py-3 text-center"></td>
+                <td class="px-6 py-3 text-right">
+                  {{ formatCurrency(totalAngsuran) }}
+                </td>
+                <td class="px-6 py-3 text-right">
+                  {{ formatCurrency(totalBunga) }}
+                </td>
+                <td class="px-6 py-3 text-right">
+                  {{ formatCurrency(totalPokok) }}
+                </td>
+                <td class="px-6 py-3 text-center"></td>
+              </tr>
+            </tfoot>
           </table>
         </section>
 
