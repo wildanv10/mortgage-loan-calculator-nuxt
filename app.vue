@@ -73,10 +73,10 @@ const hitungKPR = async () => {
         hasil.value.push({
           Tahun: tahun,
           Bulan: bulan++,
-          AngsuranBulanan: angsuranBulanan.toFixed(0),
-          AngsuranBunga: angsuranBunga.toFixed(0),
-          AngsuranPokok: angsuranPokok.toFixed(0),
-          SisaPokok: sisaPokok.toFixed(0),
+          AngsuranBulanan: angsuranBulanan,
+          AngsuranBunga: angsuranBunga,
+          AngsuranPokok: angsuranPokok,
+          SisaPokok: sisaPokok,
         });
       }
     }
