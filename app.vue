@@ -49,6 +49,9 @@ const hitungKPR = async () => {
   hasil.value = [];
   hasilBarisRefs.value = [];
   isCalculating.value = true;
+  totalAngsuran.value = 0;
+  totalBunga.value = 0;
+  totalPokok.value = 0;
   await nextTick();
 
   try {
