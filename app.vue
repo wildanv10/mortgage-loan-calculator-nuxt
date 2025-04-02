@@ -167,7 +167,7 @@ const showTable = () => {
                     v-model="formattedTenor"
                     class="border border-gray-300 rounded-md py-2 px-4 w-full sm:w-60"
                     autofocus
-                    @input="formattte('tenor', $event)"
+                    @input="updateValue('tenor', $event)"
                   />
                   <span
                     class="absolute right-0 top-1.5 px-4 py-1 border-l border-gray-200 text-gray-500 text-sm"
