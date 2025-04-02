@@ -127,9 +127,9 @@ const showTable = () => {
 
 <template>
   <div class="container mx-auto">
-    <section class="flex flex-col justify-around lg:flex-row gap-4">
+    <section class="flex flex-col justify-around lg:flex-row gap-4 lg:gap-10">
       <!-- Input Form -->
-      <div>
+      <div class="lg:basis-1/3">
         <div
           class="sticky top-6 lg:top-10 mt-6 lg:mt-10 shadow-lg outline outline-black/5 bg-white rounded-2xl p-4"
         >
@@ -305,7 +305,10 @@ const showTable = () => {
       </div>
 
       <!-- Right Section -->
-      <section :class="{ 'h-auto lg:h-dvh': hasil.length }">
+      <section
+        :class="{ 'h-auto lg:h-dvh': hasil.length }"
+        class="lg:basis-2/3"
+      >
         <!-- Results Table -->
         <section
           :class="{ 'h-[400px] lg:h-1/2': hasil.length }"
