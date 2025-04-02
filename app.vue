@@ -386,7 +386,11 @@ const showTable = () => {
 
         <!-- Chart -->
         <section class="flex justify-center items-center mt-12 lg:mt-24 mb-10">
-          <ChartRateDifference v-if="hasil.length" :hasil-angsuran="hasil" />
+          <ChartRateDifference
+            v-if="hasil.length"
+            chart-title="Rasio Bunga dan Pokok Terhadap Angsuran"
+            :hasil-angsuran="hasil"
+          />
         </section>
       </section>
     </section>
